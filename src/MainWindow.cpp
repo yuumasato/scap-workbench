@@ -829,10 +829,13 @@ void MainWindow::refreshProfiles()
             // See https://github.com/OpenSCAP/openscap/pull/607
 #if (QT_VERSION_CHECK(OPENSCAP_VERSION_MAJOR, OPENSCAP_VERSION_MINOR, OPENSCAP_VERSION_PATCH) > QT_VERSION_CHECK(1, 2, 12))
             struct xccdf_policy* policy = xccdf_policy_new(policyModel, NULL);
+            if (policy == NULL)
+                goto default_title;
             const int selectedRulesCount = xccdf_policy_get_selected_rules_count(policy);
             xccdf_policy_free(policy);
 
             profileTitle = profileTitle + " ("+ QString::number(selectedRulesCount) + ")";
+            default_title:
 #endif
 
             // Intentionally comes last. Users are more likely to use profiles other than (default)
