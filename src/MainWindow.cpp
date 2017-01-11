@@ -832,7 +832,7 @@ void MainWindow::refreshProfiles()
             const int selectedRulesCount = xccdf_policy_get_selected_rules_count(policy);
             xccdf_policy_free(policy);
 
-            profileTitle = profileTitle + " ("+ QString::number(selectedRulesCount) + ")";
+            profileTitle = QString("(default ("+ QString::number(selectedRulesCount) + ")");
 #endif
 
             // Intentionally comes last. Users are more likely to use profiles other than (default)
